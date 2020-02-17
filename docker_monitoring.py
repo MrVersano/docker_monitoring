@@ -19,7 +19,7 @@ def post_to_slack(channel_name, message):
 	requests.post(url='https://slack.com/api/chat.postMessage', data=data)
 
 # Configure server and port
-server = 'ubuntu-vm'
+server = 'localhost'
 port = 5555
 
 # Pull a list of all containers from the Docker API
