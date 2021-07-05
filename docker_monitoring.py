@@ -2,11 +2,17 @@ import json
 import requests
 import os
 
+
+
+# Load Config File
+with open('/etc/ms_config/reports_config.json') as config_file:
+	config = json.load(config_file)
+
 # Funciton to send a notification to a slack channel
 def post_to_slack(channel_name, message):
 	
 	# slack access bot token
-	slack_token = os.environ['aerith']
+	slack_token = config['aerith']
 
 	data = {
 		'token': slack_token,
@@ -20,7 +26,7 @@ def post_to_slack(channel_name, message):
 
 # Configure server and port
 server = 'localhost'
-port = 5555
+port = 2375
 
 # Pull a list of all containers from the Docker API
 r = requests.get(url=f'http://{server}:{port}/containers/json?all=1')
