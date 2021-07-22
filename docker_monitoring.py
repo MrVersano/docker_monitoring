@@ -35,4 +35,4 @@ for container in containers_data:
 
 # Post message to slack if any container is not running
 if len(stopped_containers) > 0:
-    post_to_slack('ms-alerts', f'@here Docker Alert!\nThe following containers have stopped running on the reporting server: {stopped_containers}')
+    post_to_slack('es_alert_errors', f'@here Docker Alert!\nThe following containers have stopped running on the reporting server: {stopped_containers}')
