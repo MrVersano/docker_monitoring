@@ -36,7 +36,7 @@ stopped_containers = []
 
 # Loop through containers to see if a container is not running
 for container in containers_data:
-    if container['State'] != 'running':
+    if container['State'] != 'running' and container['State'] != "restarting":
         stopped_containers.append(container['Names'][0].replace("/", ""))
 
 # Post message to slack if any container is not running
