@@ -29,7 +29,7 @@ def post_to_slack(channel_name, message):
 
 not_running_containers = [] # A list of containers that are not running
 client = docker.from_env()
-for container in client.containers.list():
+for container in client.containers.list(all=True):
 	if container.status != 'running':
 		not_running_containers.append(container.name)
 
@@ -37,5 +37,6 @@ if len(not_running_containers) == 0:
 	print("All containers running.")
 else:
 	for container in not_running_containers:
+		print(f"WARNING: Container {container} is not running on server {socket.gethostname()}")
 		post_to_slack("es_alert_errors", f"WARNING: Container {container} is not running on server {socket.gethostname()}")
 
